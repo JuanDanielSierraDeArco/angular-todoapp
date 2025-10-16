@@ -1,0 +1,42 @@
+<h1>Hola Soy Juan </h1>
+
+<h2>{{ name }}</h2>
+
+<ul>
+  <li *ngFor="let task of tasks">
+    {{ task }}
+  </li>
+</ul>
+
+<hr>
+<h2>String interpolation en Angular</h2>
+<p>transmitir datos</p>
+<h2>{{'hola '.repeat(4)}}</h2>
+<p>la suma de 3 + 3 = {{3 + 3}}</p>
+<h3>hola mi nombre {{ name }} y tengo {{ age }} años</h3>
+
+<img [src]="img" alt="">
+<input type="text" [value]="name"> 
+<button [disabled]="disabled">Click me!</button>
+
+<p>Hola Soy {{person.name}} y tengo {{person.age}}</p>
+<hr>
+<p>Enlazar propiedades tipo objeto</p>
+
+<p>Hola Soy {{person.name}} y tengo {{person.age}}</p>
+
+<input type="number" [value]="person.age">
+<img [src]="person.avatar">
+<button [disabled]="person.disabled">Click me!</button>
+<p>{{person.name}}</p>
+<hr>
+<p>Eventos en Angular</p>
+
+<button (click)="clickHandler()" >Click me!</button>
+<br>
+<button (dblclick)="clickHandlerv2()" >Doble Click me!</button>
+
+
+
+
+
