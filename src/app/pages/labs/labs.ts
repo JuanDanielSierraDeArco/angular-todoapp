@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,16 +20,13 @@ export class Labs {
     disabled: false
   }
 
-
-
-
-  tasks = <string[]>[
+  tasks = signal<string[]>([
     "Instalar el Angular CLI",
     "Crear un proyecto",
     "Crear un componente",
     "crear un servicio",
     "crear un modelo"
-  ];
+  ]);
 
   clickHandler() {
     alert("Hola " + this.person.name);
@@ -38,4 +35,24 @@ export class Labs {
     clickHandlerv2() {
     alert("Hola " + this.person.name + " haz doble click");
   }
+
+  changeHander(event: Event) {
+    console.log((<HTMLInputElement>event.target).value);
+  }
+
+  keyDownHandler(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    console.log(input.value);
+  }
+
+  username = signal('Juan Sierra De Arco');
+
+  changeUsername(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newvalue = input.value;
+    this.username.set(newvalue);
+  }
+  
+
+
 }
