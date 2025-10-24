@@ -8,6 +8,8 @@
           placeholder="Type new todo"
           autofocus
           type="text"
+          [formControl]="newTaskCtrl"
+          (keydown.enter)="changeTaskList()"
         />
       </div>
     </header>
@@ -15,21 +17,30 @@
       <!-- This section should be hidden by default and shown when there are todos -->
       <section class="main">
         <ul class="todo-list">
-          <li  *ngFor="let task of tasks()" class="completed">
+          <li  *ngFor="let task of tasks(); let i = index">
             <div class="view">
-              <input class="toggle" type="checkbox" checked />
-              <label>{{ task }}</label>
-              <button class="destroy"></button>
+              <input class="toggle" type="checkbox" [checked] ="task.completed" (change)="updateTask(i)" />
+              <label>{{ task.title }}</label>
+              <button class="destroy" (click)="deleteTask(i)"></button> 
             </div>
             <input class="edit" value="Learn JavaScript" />
           </li>
-          <li>
+          <!--
+          <li class="completed">
             <div class="view">
-              <input class="toggle" type="checkbox" />
+              <input class="toggle" type="checkbox" checked/>
               <label>Buy a unicorn</label>
               <button class="destroy"></button>
             </div>
             <input class="edit" value="Buy a unicorn" />
+          </li>
+          <li>
+            <div class="view">
+              <input class="toggle" type="checkbox" />
+              <label>Learn Angular</label>
+              <button class="destroy"></button>
+            </div>
+            <input class="edit" value="Learn Angular" />
           </li>
           <li class="editing">
             <div class="view">
@@ -39,12 +50,19 @@
             </div>
             <input class="edit" value="Make dishes" />
           </li>
+          -->
         </ul>
       </section>
       <!-- This footer should be hidden by default and shown when there are todos -->
       <footer class="footer">
         <!-- This should be `0 items left` by default -->
-        <span class="todo-count"><strong>0</strong> item left</span>
+        <span class="todo-count">
+          <strong>
+            {{ tasks().length}}
+          </strong>
+          <span *ngIf="tasks().length === 1; else elseBlock">item</span>
+          <ng-template #elseBlock>items</ng-template>
+        </span>
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
           <li>

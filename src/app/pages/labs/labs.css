@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.box {
+    height: 10px;
+    display: block;
+    background-color: red;
+}

@@ -19,15 +19,15 @@
 <input type="text" [value]="name"> 
 <button [disabled]="disabled">Click me!</button>
 
-<p>Hola Soy {{person.name}} y tengo {{person.age}}</p>
+<p>Hola Soy {{person().name}} y tengo {{person().age}}</p>
 <hr>
 <p>Enlazar propiedades tipo objeto</p>
 
-<p>Hola Soy {{person.name}} y tengo {{person.age}}</p>
+<p>Hola Soy {{person().name}} y tengo {{person().age}}</p>
 
-<input type="number" [value]="person.age">
-<img [src]="person.avatar">
-<button [disabled]="person.disabled">Click me!</button>
+<input type="number" [value]="person().age">
+<img [src]="person().avatar">
+<button [disabled]="person().disabled">Click me!</button>
 <p>{{person.name}}</p>
 <hr>
 <p>Eventos en Angular</p>
@@ -37,14 +37,14 @@
 <button (dblclick)="clickHandlerv2()" >Doble Click me!</button>
 <br>
 <p>(Change)</p>
-<input type="number" (change)="changeHander($event)" [placeholder]="person.age">
+<input type="number" (change)="changeHander($event)" [placeholder]="person().age">
 <br>
 <p>(keydown)</p>
-<input type="text" (keydown)="keyDownHandler($event)" [placeholder]="person.name">
+<input type="text" (keydown)="keyDownHandler($event)" [placeholder]="person().name">
 <p>(Change)</p>
-<input type="text" (change)="changeHander($event)" [placeholder]="person.age">
+<input type="text" (change)="changeHander($event)" [placeholder]="person().age">
 <p>(keydown atajo de teclado)</p>
-<input type="text" (keydown.shift.t)="clickHandler()" [placeholder]="person.name">
+<input type="text" (keydown.shift.t)="clickHandler()" [placeholder]="person().name">
 <br>
 <hr>
 <br>
@@ -59,11 +59,56 @@
     {{ i }} {{ task }}
   </li>
 </ul>
-
-
-
 <br>
+<hr>
+<br>
+<p> *ngif </p>
+<div *ngIf=" 19 > 18">
+  <p>Eres mayor de edad</p>
+</div>
 
+<div *ngIf=" name === 'Juan Sierra'">
+  <p>{{name}}</p>
+</div>
 
+<div *ngIf=" person().name === 'Juan Daniel Sierra' && person().age > 18 ">
+  <p>Soy {{name}} y soy mayor de edad</p>
+</div>
 
-
+<hr>
+<br>
+<p> *ngswitch </p>
+<input type="number" (change)="changePersonAge($event)" [placeholder]="person().age">
+<div>
+  <div [ngSwitch]="person().age">
+    <p *ngSwitchCase="18">Tienes 18 años</p>
+    <p *ngSwitchCase="27">Tienes 27 años</p>
+    <p *ngSwitchDefault>No sabemos tu edad</p>
+  </div>
+</div>
+<p>Probando *ngswitch</p>
+<input type="text" [value]="person().name" (change)="changePersonNmae($event)">
+<div [ngSwitch]="person().name" >
+  <p *ngSwitchCase="'juan'">Yo soy Juan Daniel</p>
+  <p *ngSwitchCase="'daniel'">Yo soy Daniel Juan </p>
+  <p *ngSwitchCase="'ana'">Yo soy ana alicia</p>
+  <p *ngSwitchDefault>No estoy registrado con ningun nombre en tu sistema</p>
+</div>
+<hr>
+<br>
+<p> Formularios </p>
+<input type="color" [formControl]="colorCtrl">
+<p>color: {{ colorCtrl.value }} </p>
+<hr>
+<br>
+<p> Estilos modo Angular </p>
+<svg>
+  <g>
+    <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value"/>
+  </g>
+</svg>
+<hr>
+<br>
+<p> Estilos </p>
+<input type="number" [formControl]="widthCtrl">
+<span class="box" [style.width.px]="widthCtrl.value"></span>
