@@ -28,7 +28,7 @@
 <input type="number" [value]="person().age">
 <img [src]="person().avatar">
 <button [disabled]="person().disabled">Click me!</button>
-<p>{{person.name}}</p>
+<p>{{person().name}}</p>
 <hr>
 <p>Eventos en Angular</p>
 
@@ -110,5 +110,20 @@
 <hr>
 <br>
 <p> Estilos </p>
-<input type="number" [formControl]="widthCtrl">
-<span class="box" [style.width.px]="widthCtrl.value"></span>
+<input type="number" [formControl]="widthCtrl" placeholder="ancho">
+<input type="number" [formControl]="heightCtrl" placeholder="alto">
+<input type="color" [formControl]="colorCtrl">
+<br>
+<span class="box" 
+  [style.width.px]="widthCtrl.value" 
+  [style.height.px]="heightCtrl.value"
+  [style.background]="colorCtrl.value">
+</span>
+<p>
+  <input type="text" [formControl]="nameCtrl">
+  <br>
+  <span class="message-error" [class.show]="nameCtrl.invalid && nameCtrl.touched">Nombre invalido</span>
+</p>
+  <p>
+    <input type="text">
+  </p>

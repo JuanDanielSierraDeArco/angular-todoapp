@@ -1,0 +1,25 @@
+<p>homev1 works!</p>
+<div class="app-container">
+  <h1>Mis tareas del día</h1>
+
+  <div class="task-input">
+    <input
+      type="text"
+      placeholder="Escribe una nueva tarea..."
+      [(ngModel)]="newTask"
+    />
+    <button (click)="addTask()">Agregar</button>
+  </div>
+
+  <ul class="task-list">
+    <li
+      *ngFor="let task of tasks"
+      [class.completed]="task.completed"
+    >
+      <span (click)="toggleTask(task)">
+        {{ task.title }}
+      </span>
+      <button class="delete" (click)="deleteTask(task)">✕</button>
+    </li>
+  </ul>
+</div>
