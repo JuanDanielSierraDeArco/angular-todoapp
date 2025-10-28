@@ -337,7 +337,7 @@
 }
 
 .clear-completed:hover {
-  background-color: #f1f0ff;
+  background-color: var(--color-danger);
   border-color: var(--color-danger);
 }
 
@@ -420,7 +420,6 @@
 }
 
 .clear-completed {
-  float: none;
   display: block;
   width: 100%;
   max-width: 220px;
@@ -430,7 +429,7 @@
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: white;
+  color: var(--color-danger);
   background-color: var(--color-danger);
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
